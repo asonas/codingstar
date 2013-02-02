@@ -1,0 +1,25 @@
+{
+  "manifest_version": 2,
+  "name": "Coding Star",
+  "version": "0.0.1",
+  "description": "Shooting Star on GitHub",
+  "icons": {
+    "16": "images/icon16.png",
+    "48": "images/icon48.png",
+    "128": "images/icon128.png"
+  },
+  "permissions": [
+    "tabs",
+    "https://*/"
+  ],
+  "browser_action": {
+    "default_icon": "images/icon48.png",
+    "default_popup": "popup.html"
+  },
+  "background": {
+    "scripts": [
+      "javascripts/jquery-1.9.0.min.js",
+      "javascripts/background.js"
+    ]
+  }
+}
