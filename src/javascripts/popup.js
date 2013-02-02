@@ -11,24 +11,24 @@
         return $(".url").text(_this.url);
       });
       $(".status").text("crawling");
-      $.get("https://github.com/notifications", function(data) {
+      return $.get("https://github.com/notifications", function(data) {
         _this.name = $(data).find("#user-links .name").text();
-        return $(".name").text(_this.name);
-      });
-      console.log("test");
-      console.log(_this.name);
-      console.log(_this.url);
-      return $.ajax({
-        url: "http://codingstar.herokuapp.com/stars.json",
-        type: "post",
-        data: {
-          user: "test",
-          url: "test"
-        }
-      }).done(function(data) {
-        return $(".status").text("done!");
-      }).always(function() {
-        return $(".status").text("sending..");
+        $(".name").text(_this.name);
+        console.log("test");
+        console.log(_this.name);
+        console.log(_this.url);
+        return $.ajax({
+          url: "http://codingstar.herokuapp.com/stars.json",
+          type: "post",
+          data: {
+            user: _this.name,
+            url: _this.url
+          }
+        }).done(function(data) {
+          return $(".status").text("done!");
+        }).always(function() {
+          return $(".status").text("sending..");
+        });
       });
     });
   });
