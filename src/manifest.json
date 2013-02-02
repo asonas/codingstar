@@ -10,7 +10,8 @@
   },
   "permissions": [
     "tabs",
-    "https://*/"
+    "https://*/",
+    "http://codingstar.herokuapp.com/"
   ],
   "browser_action": {
     "default_icon": "images/icon48.png",
