@@ -8,13 +8,10 @@
     return $("img.clickable").on("click", function() {
       chrome.tabs.getSelected(window.id, function(tab) {
         _this.url = tab.url;
-        $(".url").text(_this.url);
         return _this.path = _this.url.split(/https:\/\/github.com/)[1];
       });
-      $(".status").text("crawling");
       return $.get("https://github.com/notifications", function(data) {
         _this.name = $(data).find("#user-links .name").text();
-        $(".name").text(_this.name);
         return $.ajax({
           url: "http://codingstar.herokuapp.com/stars.json",
           type: "post",
@@ -23,9 +20,9 @@
             path: _this.path
           }
         }).done(function(data) {
-          return $(".status").text("done!");
+          return console.log("success");
         }).always(function() {
-          return $(".status").text("sending..");
+          return $("img.clickable").attr("src", "images/icon128-ok.png");
         });
       });
     });

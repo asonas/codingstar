@@ -5,12 +5,12 @@ $ ->
   $("img.clickable").on "click", =>
     chrome.tabs.getSelected window.id, (tab) =>
       @url = tab.url
-      $(".url").text @url
+      #$(".url").text @url
       @path = @url.split(/https:\/\/github.com/)[1]
-    $(".status").text "crawling"
+    #$(".status").text "crawling"
     $.get "https://github.com/notifications", (data) =>
       @name = $(data).find("#user-links .name").text()
-      $(".name").text @name
+      #$(".name").text @name
 
       $.ajax
         url: "http://codingstar.herokuapp.com/stars.json"
@@ -19,7 +19,9 @@ $ ->
           user: @name
           path: @path
       .done (data) =>
-        $(".status").text "done!"
+        console.log "success"
+        #$(".status").text "done!"
       .always () =>
-        $(".status").text "sending.."
+        $("img.clickable").attr("src", "images/icon128-ok.png")
+        #$(".status").text "sending.."
 
