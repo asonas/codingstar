@@ -5,24 +5,22 @@
     var _this = this;
     this.url = "";
     this.name = "";
-    return $("button").on("click", function() {
+    return $("img.clickable").on("click", function() {
       chrome.tabs.getSelected(window.id, function(tab) {
         _this.url = tab.url;
-        return $(".url").text(_this.url);
+        $(".url").text(_this.url);
+        return _this.path = _this.url.split(/https:\/\/github.com/)[1];
       });
       $(".status").text("crawling");
       return $.get("https://github.com/notifications", function(data) {
         _this.name = $(data).find("#user-links .name").text();
         $(".name").text(_this.name);
-        console.log("test");
-        console.log(_this.name);
-        console.log(_this.url);
         return $.ajax({
           url: "http://codingstar.herokuapp.com/stars.json",
           type: "post",
           data: {
             user: _this.name,
-            url: _this.url
+            path: _this.path
           }
         }).done(function(data) {
           return $(".status").text("done!");
